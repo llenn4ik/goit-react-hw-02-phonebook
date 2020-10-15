@@ -1,50 +1,56 @@
 import React, { Component } from "react";
 // import { v4 as uuidv4 } from "uuid";
 
+const INITIAL_CONTACT_STATE = {
+  name: "",
+  number: "",
+};
+
 class ContactForm extends Component {
-    state = {
-        contacts: [],
-        name: '',
-        number: '',
-      }
-      /*
-       * Отвечает за обновление состояния
-       */
-      handleChange = e => {
-        const { name, value } = e.target;
+  state = INITIAL_CONTACT_STATE;
+  /*
+   * Отвечает за обновление состояния
+   */
+  handleChange = (e) => {
+    const { name, value } = e.target;
     this.setState({ [name]: value });
-      };
-    
-      /*
-       * Вызывается при отправке формы
-       */
-      handleSubmit = evt => {
-        evt.preventDefault();
-        const { name, number } = this.state;
+  };
 
-    this.props.onAddTask(this.state.name, this.state.number);
+  /*
+   * Вызывается при отправке формы
+   */
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, number } = this.state;
+    const { addContact } = this.props;
 
-    this.setState({ name: "", number: "" });
-      };
-    
-      render() {
-        const { name, number } = this.state;
-    
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name
-              <input
-                type="name"
-                placeholder="Enter name"
-                value={name}
-                name ="name"
-                onChange={this.handleChange}
-                required
-              />
-            </label>
-    
-            <label >
+    addContact({ name, number });
+    this.setState({ ...INITIAL_CONTACT_STATE });
+  };
+
+    // this.props.addContact(this.state.name, this.state.number);
+
+    // this.setState({ ...INITIAL_CONTACT_STATE });
+
+
+  render() {
+    const { name, number } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name
+          <input
+            type="name"
+            placeholder="Enter name"
+            value={name}
+            name="name"
+            onChange={this.handleChange}
+            required
+          />
+        </label>
+
+        <label>
           Number
           <input
             type="phone"
@@ -57,9 +63,9 @@ class ContactForm extends Component {
           />
         </label>
 
-            <button type="submit">Sign up as {name}</button>
-          </form>
-        );
-      }
-    }
-    export default ContactForm
+        <button type="submit">Sign up as {name}</button>
+      </form>
+    );
+  }
+}
+export default ContactForm;

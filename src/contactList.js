@@ -1,10 +1,11 @@
 import React from 'react';
 
 
-const ContactList =({contacts, onRemoveContact}) => (
-   
-   <ul>
+const ContactList = ({contacts, onRemoveContact}) =>
+   (
+      <ul>
          {contacts.map(({ id, name, number }) => (
+    
           <li key={id} >
             <p >name: {name}</p>
             <p >number: {number}</p>
@@ -15,13 +16,9 @@ const ContactList =({contacts, onRemoveContact}) => (
             >
               Delete
             </button>
-          </li>
-        ))}
-      </ul>
+          </li>)
+         )}
+      </ul>)
       
 
-
-
-
-)
-export default ContactList
+      export default ContactList
