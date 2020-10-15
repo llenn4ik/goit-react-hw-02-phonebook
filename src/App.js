@@ -19,7 +19,6 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    // const contacts = this.state.contacts;
     const { contacts } = this.state;
     const newContact = {
       id: uuidv4(),
@@ -61,10 +60,6 @@ class App extends Component {
       };
     });
   };
-
-  // handleChange = (e) => {
-  //   this.setState({ name: e.target.name });
-  // };
 
   render() {
     const { contacts, filter } = this.state;

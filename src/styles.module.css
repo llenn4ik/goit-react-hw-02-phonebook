@@ -3,7 +3,7 @@ body{
      color:  #6b4141;
 }
 
-li{
+.contact_list_item{
     list-style: none;
 
 }

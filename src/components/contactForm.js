@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
 
 const INITIAL_CONTACT_STATE = {
   name: "",
@@ -8,17 +8,23 @@ const INITIAL_CONTACT_STATE = {
 
 class ContactForm extends Component {
   state = INITIAL_CONTACT_STATE;
-  /*
-   * Отвечает за обновление состояния
-   */
+
+  static propTypes = {
+    onAddContact: PropTypes.func.isRequired,
+    contacts: PropTypes.arrayOf(
+      PropTypes.exact({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
-  /*
-   * Вызывается при отправке формы
-   */
   handleSubmit = (e) => {
     e.preventDefault();
     const { name, number } = this.state;
@@ -27,9 +33,6 @@ class ContactForm extends Component {
     addContact({ name, number });
     this.setState({ ...INITIAL_CONTACT_STATE });
   };
-
- 
-
 
   render() {
     const { name, number } = this.state;
