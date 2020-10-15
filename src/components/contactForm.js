@@ -28,9 +28,7 @@ class ContactForm extends Component {
     this.setState({ ...INITIAL_CONTACT_STATE });
   };
 
-    // this.props.addContact(this.state.name, this.state.number);
-
-    // this.setState({ ...INITIAL_CONTACT_STATE });
+ 
 
 
   render() {

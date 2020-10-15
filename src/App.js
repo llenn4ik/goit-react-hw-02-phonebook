@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { v4 as uuidv4 } from "uuid";
-import ContactForm from "./contactForm";
-import ContactList from "./contactList";
-import Filter from "./Filter";
-
+import ContactForm from "./components/contactForm";
+import ContactList from "./components/contactList";
+import Filter from "./components/Filter";
 
 const CONTACTS_DATA = [
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -15,7 +14,7 @@ const CONTACTS_DATA = [
 class App extends Component {
   state = {
     contacts: CONTACTS_DATA,
- 
+
     filter: "",
   };
 
@@ -24,17 +23,17 @@ class App extends Component {
     const { contacts } = this.state;
     const newContact = {
       id: uuidv4(),
-      name : "",
-      number: "",
+      name,
+      number,
     };
 
     const nameList = contacts.map((contact) => contact.name);
     if (nameList.includes(name)) {
       alert(`${name} is already in contacts.`);
-      return
+      return;
     }
 
-    this.setState(({contacts} ) => {
+    this.setState(({ contacts }) => {
       return {
         contacts: [...contacts, newContact],
       };
@@ -68,16 +67,19 @@ class App extends Component {
   // };
 
   render() {
-    const {  filter} = this.state;
+    const { contacts, filter } = this.state;
     const visibleContacts = this.getSavedContacts();
     return (
       <>
         <h2>Phonebook</h2>
         <ContactForm addContact={this.addContact} />
-        <h2>Contacts</h2>
-    
-        <Filter value={filter} onChangeFilter={this.changeFilter} />
-      
+
+        {contacts.length > 1 && (
+          <>
+            <h2>Contacts</h2>
+            <Filter value={filter} onChangeFilter={this.changeFilter} />
+          </>
+        )}
         {visibleContacts.length > 0 && (
           <ContactList
             onRemoveContact={this.removeContact}

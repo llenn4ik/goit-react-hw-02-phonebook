@@ -7,14 +7,14 @@ const ContactList = ({contacts, onRemoveContact}) =>
          {contacts.map(({ id, name, number }) => (
     
           <li key={id} >
-            <p >name: {name}</p>
-            <p >number: {number}</p>
+            <p > {name}:  {number}</p>
+
             <button
               type="button"
               onClick={() => onRemoveContact(id)}
               
             >
-              Delete
+              Delete contact
             </button>
           </li>)
          )}
