@@ -8,7 +8,8 @@ const Filter = ({ value, onChangeFilter }) => {
       <input
         type="text"
         value={value}
-        onChange={(e) => onChangeFilter(e.target.value)}
+        // onChange={(e) => onChangeFilter(e.target.value)}
+        onChange={({target}) => onChangeFilter(target.value)}
       ></input>
     </div>
   );

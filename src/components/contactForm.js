@@ -20,8 +20,8 @@ class ContactForm extends Component {
     ).isRequired,
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
+  handleChange = ({ target }) => {
+    const { name, value } = target;
     this.setState({ [name]: value });
   };
 
